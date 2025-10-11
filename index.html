@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HuyMythicIOS</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: url('huymythic.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.neon-title {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  color: #00ffff;
+  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
+  animation: flicker 2s infinite;
+  text-align: center;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+.subtext {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  text-align: center;
+}
+
+.subtext span {
+  color: red;
+  text-shadow: 0 0 20px red, 0 0 40px red;
+}
+
+.list-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 80%;
+  max-width: 600px;
+}
+
+.box {
+  width: 100%;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 0 10px #00ffff;
+  backdrop-filter: blur(10px);
+}
+
+.galaxy {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(0) rotate(0deg); opacity: 1; }
+  to { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.footer a {
+  color: red;
+  text-shadow: 0 0 10px red;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="galaxy" id="galaxy"></div>
+<h1 class="neon-title">HuyMythicIOS</h1>
+<div class="subtext">Tôi Là <span id="changing-text">Hoàng Quang Huy</span></div>
+
+<div class="list-container">
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+  <div class="box">Coming Soon</div>
+</div>
+
+<div class="footer">
+  <h4>Code Bởi HuyMythicIOS: <a href="https://discord.gg/XEaC68tVnv" target="_blank">Discord Support</a></h4>
+</div>
+
+<script>
+const texts = ["Hoàng Quang Huy", "Make Client Roblox VNG IOS", "Code HTML And CSS"];
+let index = 0;
+setInterval(() => {
+  index = (index + 1) % texts.length;
+  document.getElementById("changing-text").textContent = texts[index];
+}, 5000);
+
+const galaxy = document.getElementById('galaxy');
+for (let i = 0; i < 150; i++) {
+  const star = document.createElement('div');
+  star.classList.add('star');
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 100 + '%';
+  star.style.animationDuration = 5 + Math.random() * 10 + 's';
+  star.style.opacity = Math.random();
+  galaxy.appendChild(star);
+}
+</script>
+</body>
+</html>
