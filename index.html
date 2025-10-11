@@ -6,90 +6,111 @@
   <title>HuyMythicIOS</title>
   <style>
     :root{
-      --bg:#05040a;
-      --cyan:#00ffd9;
-      --red:#ff2b2b;
-      --muted:#bfc9d3;
-      --card-bg: rgba(1,6,10,0.45);
-      --glass: rgba(255,255,255,0.03);
-      --maxw:960px;
+      --cyan: #00ffd9;
+      --red: #ff2b2b;
+      --muted: #bfc9d3;
+      --maxw: 1100px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
-      font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial;
-      background: url('huymythic.jpeg') center/cover no-repeat fixed;
-      background-color: var(--bg);
-      color: #fff;
+      font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      color:#fff;
+      line-height:1.4;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.4;
       overflow-y:auto;
-      padding:32px 16px;
+      background: #000;
+    }
+
+    .bg-image{
+      position:fixed;
+      inset:0;
+      background-image: url('huymythic.jpeg');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      z-index: -3;
+      will-change: transform;
     }
 
     .galaxy{
-      position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
-    }
-    .streak{
-      position:absolute;
-      width:360px;height:6px;
-      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
-      filter:blur(6px);
-      border-radius:999px;
-      mix-blend-mode:screen;
-      opacity:.5;
-      transform:translateX(-50vw);
-      animation: floatX linear infinite;
-    }
-    .streak.s1{ top:10%; left:-30%; animation-duration:20s; transform:rotate(-8deg) }
-    .streak.s2{ top:30%; left:-40%; animation-duration:26s; transform:rotate(-12deg) }
-    .streak.s3{ top:55%; left:-35%; animation-duration:22s; transform:rotate(-10deg) }
-    .streak.s4{ top:80%; left:-50%; animation-duration:30s; transform:rotate(-14deg) }
-    @keyframes floatX{
-      0%{ transform: translateX(-40vw) }
-      50%{ transform: translateX(120vw); opacity:0.6 }
-      100%{ transform: translateX(260vw); opacity:0 }
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-2;
+      overflow:hidden;
     }
 
-    .page{
+    .star {
+      position:absolute;
+      background: white;
+      border-radius:50%;
+      opacity:0.9;
+      transform: translateZ(0);
+      box-shadow: 0 0 6px rgba(255,255,255,0.8);
+    }
+
+    @keyframes twinkle {
+      0%   { opacity: 0.1; transform: scale(0.75); }
+      50%  { opacity: 1;   transform: scale(1.1); }
+      100% { opacity: 0.1; transform: scale(0.75); }
+    }
+
+    .streak {
+      position:absolute;
+      width: 420px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
+      filter: blur(6px);
+      mix-blend-mode: screen;
+      opacity: 0.6;
+      transform: translateX(-60vw);
+    }
+    @keyframes streakMove {
+      0% { transform: translateX(-60vw) rotate(var(--r, -10deg)); }
+      50% { transform: translateX(120vw) rotate(var(--r, -10deg)); opacity:0.5; }
+      100% { transform: translateX(240vw) rotate(var(--r, -10deg)); opacity:0; }
+    }
+
+    .page {
       position:relative;
-      z-index:2;
-      max-width:var(--maxw);
-      margin:0 auto;
+      z-index: 1;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 32px 16px 80px;
       display:flex;
       flex-direction:column;
       gap:28px;
-      align-items:center;
+      min-height:100vh;
     }
 
     header{
-      width:100%;
       display:flex;
+      flex-direction:column;
       align-items:center;
       justify-content:center;
-      flex-direction:column;
-      gap:12px;
-      padding-top:36px;
-      padding-bottom:6px;
       text-align:center;
+      gap:18px;
+      min-height:62vh;
     }
 
     .title{
       font-weight:900;
-      font-size:clamp(36px,8vw,84px);
       color:var(--cyan);
+      font-size:clamp(40px,10vw,96px);
       letter-spacing:-0.02em;
       text-shadow:
-        0 0 20px rgba(0,255,217,0.28),
-        0 0 48px rgba(0,255,217,0.14);
-      animation: neon 2.6s ease-in-out infinite;
+        0 0 18px rgba(0,255,217,0.24),
+        0 0 48px rgba(0,255,217,0.15);
       margin:0;
+      animation: pulse 2.6s ease-in-out infinite;
     }
-    @keyframes neon{
+    @keyframes pulse{
       0%,100%{ filter:brightness(1) }
-      50%{ filter:brightness(1.08) drop-shadow(0 0 10px rgba(0,255,217,0.2)) }
+      50%{ filter:brightness(1.08) drop-shadow(0 0 12px rgba(0,255,217,0.2)) }
     }
 
     .intro-row{
@@ -97,47 +118,45 @@
       gap:12px;
       align-items:center;
       justify-content:center;
-      font-size:clamp(16px,3.2vw,22px);
-      z-index:3;
-      padding:0 8px;
       flex-wrap:wrap;
+      font-size:clamp(16px,3.2vw,24px);
     }
     .intro-fixed{
-      color: #fff;
-      font-weight:700;
+      font-weight:800;
+      color:#fff;
       text-shadow: 0 1px 0 rgba(0,0,0,0.6);
     }
     .rotator{
       color:var(--red);
-      font-weight:800;
-      text-shadow:
-        0 0 10px rgba(255,43,43,0.28),
-        0 0 24px rgba(255,43,43,0.12);
-      min-width:200px;
+      font-weight:900;
+      min-width:220px;
       text-align:center;
       opacity:0;
-      transform:translateY(8px);
-      transition: opacity .9s cubic-bezier(.2,.9,.2,1), transform .9s cubic-bezier(.2,.9,.2,1);
+      transform:translateY(10px);
+      transition: opacity .85s cubic-bezier(.2,.9,.2,1), transform .85s cubic-bezier(.2,.9,.2,1);
+      text-shadow:
+        0 0 12px rgba(255,43,43,0.32),
+        0 0 28px rgba(255,43,43,0.12);
     }
     .rotator.visible{ opacity:1; transform:translateY(0) }
 
     main.content{
-      width:100%;
       display:flex;
       justify-content:center;
+      width:100%;
     }
 
     .list{
       width:100%;
-      max-width:720px;
+      max-width:760px;
       display:flex;
       flex-direction:column;
       gap:14px;
-      padding:36px 12px;
-      background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.06));
-      border-radius:18px;
+      padding:20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
+      border-radius:14px;
       border:1px solid rgba(255,255,255,0.04);
-      backdrop-filter: blur(6px);
+      backdrop-filter: none;
     }
 
     .item{
@@ -147,10 +166,10 @@
       padding:16px;
       border-radius:12px;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(0,255,217,0.06);
-      box-shadow: 0 8px 24px rgba(2,6,23,0.55);
+      border: 1px solid rgba(0,255,217,0.06);
+      box-shadow: 0 6px 20px rgba(2,6,23,0.5);
     }
-    .item .icon{
+    .icon{
       width:56px;
       height:56px;
       border-radius:12px;
@@ -163,60 +182,42 @@
       flex-shrink:0;
       box-shadow: 0 6px 18px rgba(3,8,25,0.6);
     }
-    .item .text{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    .item h4{
-      margin:0;
-      font-size:18px;
-      font-weight:800;
-    }
-    .item p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-    }
+    .text h4{ margin:0; font-size:18px; font-weight:800; }
+    .text p{ margin:4px 0 0; color:var(--muted); font-size:13px; }
 
-    footer.site-footer{
-      width:100%;
-      max-width:var(--maxw);
-      margin-top:22px;
-      padding:18px 12px;
+    footer{
       display:flex;
       justify-content:center;
       align-items:center;
+      padding:18px 12px;
+      margin-top:8px;
+      gap:8px;
     }
     .credit{
-      font-size:16px;
       color:var(--cyan);
+      font-weight:700;
       text-shadow: 0 0 12px rgba(0,255,217,0.18);
     }
     .credit a{
       color:var(--red);
-      font-weight:800;
+      font-weight:900;
       text-decoration:none;
-      margin-left:8px;
-      text-shadow: 0 0 10px rgba(255,43,43,0.26);
+      margin-left:6px;
     }
 
     @media (max-width:720px){
-      .item{padding:14px}
-      .item .icon{width:48px;height:48px;font-size:16px}
-      .title{font-size:48px}
+      .icon{width:48px;height:48px;font-size:16px}
+      .title{font-size:clamp(34px,12vw,64px)}
+      .list{padding:16px}
     }
   </style>
 </head>
 <body>
-  <div class="galaxy" aria-hidden="true">
-    <div class="streak s1"></div>
-    <div class="streak s2"></div>
-    <div class="streak s3"></div>
-    <div class="streak s4"></div>
-  </div>
+  <div class="bg-image" aria-hidden="true"></div>
 
-  <div class="page">
+  <div class="galaxy" id="galaxy" aria-hidden="true"></div>
+
+  <div class="page" role="document">
     <header>
       <h1 class="title">HuyMythicIOS</h1>
 
@@ -241,7 +242,7 @@
       </section>
     </main>
 
-    <footer class="site-footer" role="contentinfo">
+    <footer role="contentinfo">
       <div class="credit">Code Bởi HuyMythicIOS: <a href="https://discord.gg/XEaC68tVnv" target="_blank" rel="noopener">Discord Support</a></div>
     </footer>
   </div>
@@ -257,7 +258,7 @@
         setTimeout(()=>{
           el.textContent = phrases[i];
           el.classList.add('visible');
-        }, 400);
+        }, 220);
       }
 
       showPhrase(0);
@@ -266,11 +267,38 @@
         showPhrase(idx);
       }, 5000);
 
-      // subtle floating for streaks (slight randomization)
-      const streaks = document.querySelectorAll('.streak');
-      streaks.forEach((s, i) => {
-        s.style.left = (i*15 - 40) + 'vw';
+      const galaxy = document.getElementById('galaxy');
+
+      for (let i = 0; i < 220; i++){
+        const s = document.createElement('div');
+        s.className = 'star';
+        const size = (Math.random()*2.5) + 0.6;
+        s.style.width = size + 'px';
+        s.style.height = size + 'px';
+        s.style.left = (Math.random()*100) + '%';
+        s.style.top = (Math.random()*100) + '%';
+        s.style.opacity = (Math.random()*0.9).toString();
+        const dur = 3 + Math.random()*6;
+        s.style.animation = `twinkle ${dur}s ease-in-out ${Math.random()*-dur}s infinite`;
+        galaxy.appendChild(s);
+      }
+
+      const streakConfig = [
+        {top:'8%', left:'-40%', r:-6, dur:20, delay:0},
+        {top:'28%', left:'-55%', r:-10, dur:26, delay:3},
+        {top:'52%', left:'-45%', r:-8, dur:22, delay:1.5},
+        {top:'76%', left:'-60%', r:-12, dur:30, delay:5}
+      ];
+      streakConfig.forEach(cfg => {
+        const st = document.createElement('div');
+        st.className = 'streak';
+        st.style.top = cfg.top;
+        st.style.left = cfg.left;
+        st.style.setProperty('--r', cfg.r + 'deg');
+        st.style.animation = `streakMove ${cfg.dur}s linear ${cfg.delay}s infinite`;
+        galaxy.appendChild(st);
       });
+
     })();
   </script>
 </body>
