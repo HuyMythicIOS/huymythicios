@@ -299,6 +299,19 @@
         galaxy.appendChild(st);
       });
 
+      const firstItem = document.querySelector('.item');
+      if (firstItem) {
+        const title = firstItem.querySelector('.text h4');
+        const desc = firstItem.querySelector('.text p');
+        title.textContent = 'DeltaVN V35 HuyMythic (6/10)';
+        desc.textContent = 'Nhấn để tải';
+
+        firstItem.style.cursor = 'pointer';
+        firstItem.addEventListener('click', () => {
+          window.open('https://link4m.com/wb2dAULC', '_blank');
+        });
+      }
+
     })();
   </script>
 </body>
