@@ -18,10 +18,7 @@
       font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
       color:#fff;
       line-height:1.4;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-y:auto;
-      background: #000;
+      background:#000;
     }
 
     .bg-image{
@@ -31,8 +28,7 @@
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
-      z-index: -3;
-      will-change: transform;
+      z-index:-3;
     }
 
     .galaxy{
@@ -43,44 +39,43 @@
       overflow:hidden;
     }
 
-    .star {
+    .star{
       position:absolute;
-      background: white;
+      background:white;
       border-radius:50%;
       opacity:0.9;
-      transform: translateZ(0);
-      box-shadow: 0 0 6px rgba(255,255,255,0.8);
+      box-shadow:0 0 6px rgba(255,255,255,0.8);
     }
 
     @keyframes twinkle {
-      0%   { opacity: 0.1; transform: scale(0.75); }
-      50%  { opacity: 1;   transform: scale(1.1); }
-      100% { opacity: 0.1; transform: scale(0.75); }
+      0%{opacity:.1;transform:scale(.75)}
+      50%{opacity:1;transform:scale(1.1)}
+      100%{opacity:.1;transform:scale(.75)}
     }
 
-    .streak {
+    .streak{
       position:absolute;
-      width: 420px;
-      height: 6px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
-      filter: blur(6px);
-      mix-blend-mode: screen;
-      opacity: 0.6;
-      transform: translateX(-60vw);
-    }
-    @keyframes streakMove {
-      0% { transform: translateX(-60vw) rotate(var(--r, -10deg)); }
-      50% { transform: translateX(120vw) rotate(var(--r, -10deg)); opacity:0.5; }
-      100% { transform: translateX(240vw) rotate(var(--r, -10deg)); opacity:0; }
+      width:420px;
+      height:6px;
+      border-radius:999px;
+      background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.6),rgba(255,255,255,0));
+      filter:blur(6px);
+      opacity:.6;
+      transform:translateX(-60vw);
     }
 
-    .page {
+    @keyframes streakMove {
+      0%{transform:translateX(-60vw) rotate(var(--r,-10deg))}
+      50%{transform:translateX(120vw) rotate(var(--r,-10deg));opacity:.5}
+      100%{transform:translateX(240vw) rotate(var(--r,-10deg));opacity:0}
+    }
+
+    .page{
       position:relative;
-      z-index: 1;
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 32px 16px 80px;
+      z-index:1;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:32px 16px 80px;
       display:flex;
       flex-direction:column;
       gap:28px;
@@ -101,16 +96,14 @@
       font-weight:900;
       color:var(--cyan);
       font-size:clamp(40px,10vw,96px);
-      letter-spacing:-0.02em;
-      text-shadow:
-        0 0 18px rgba(0,255,217,0.24),
-        0 0 48px rgba(0,255,217,0.15);
+      text-shadow:0 0 18px rgba(0,255,217,0.24),0 0 48px rgba(0,255,217,0.15);
       margin:0;
-      animation: pulse 2.6s ease-in-out infinite;
+      animation:pulse 2.6s ease-in-out infinite;
     }
+
     @keyframes pulse{
-      0%,100%{ filter:brightness(1) }
-      50%{ filter:brightness(1.08) drop-shadow(0 0 12px rgba(0,255,217,0.2)) }
+      0%,100%{filter:brightness(1)}
+      50%{filter:brightness(1.08) drop-shadow(0 0 12px rgba(0,255,217,0.2))}
     }
 
     .intro-row{
@@ -121,114 +114,37 @@
       flex-wrap:wrap;
       font-size:clamp(16px,3.2vw,24px);
     }
-    .intro-fixed{
-      font-weight:800;
-      color:#fff;
-      text-shadow: 0 1px 0 rgba(0,0,0,0.6);
-    }
-    .rotator{
-      color:var(--red);
-      font-weight:900;
-      min-width:220px;
-      text-align:center;
-      opacity:0;
-      transform:translateY(10px);
-      transition: opacity .85s cubic-bezier(.2,.9,.2,1), transform .85s cubic-bezier(.2,.9,.2,1);
-      text-shadow:
-        0 0 12px rgba(255,43,43,0.32),
-        0 0 28px rgba(255,43,43,0.12);
-    }
-    .rotator.visible{ opacity:1; transform:translateY(0) }
 
-    main.content{
-      display:flex;
-      justify-content:center;
-      width:100%;
-    }
-
-    .list{
-      width:100%;
-      max-width:760px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      padding:20px;
-      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,0.04);
-      backdrop-filter: none;
-    }
-
-    .item{
-      display:flex;
-      gap:14px;
-      align-items:center;
-      padding:16px;
-      border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border: 1px solid rgba(0,255,217,0.06);
-      box-shadow: 0 6px 20px rgba(2,6,23,0.5);
-    }
-    .icon{
-      width:56px;
-      height:56px;
-      border-radius:12px;
-      background: linear-gradient(135deg,#7c3aed,#06b6d4);
-      display:grid;
-      place-items:center;
-      font-weight:800;
-      font-size:18px;
-      color:#fff;
-      flex-shrink:0;
-      box-shadow: 0 6px 18px rgba(3,8,25,0.6);
-    }
-    .text h4{ margin:0; font-size:18px; font-weight:800; }
-    .text p{ margin:4px 0 0; color:var(--muted); font-size:13px; }
-
-    footer{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:18px 12px;
-      margin-top:8px;
-      gap:8px;
-    }
-    .credit{
-      color:var(--cyan);
-      font-weight:700;
-      text-shadow: 0 0 12px rgba(0,255,217,0.18);
-    }
-    .credit a{
-      color:var(--red);
-      font-weight:900;
-      text-decoration:none;
-      margin-left:6px;
-    }
-
-    @media (max-width:720px){
-      .icon{width:48px;height:48px;font-size:16px}
-      .title{font-size:clamp(34px,12vw,64px)}
-      .list{padding:16px}
-    }
+    .intro-fixed{font-weight:800;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,0.6);}
+    .rotator{color:var(--red);font-weight:900;min-width:220px;text-align:center;opacity:0;transform:translateY(10px);transition:opacity .85s,transform .85s;}
+    .rotator.visible{opacity:1;transform:translateY(0)}
+    main.content{display:flex;justify-content:center;width:100%}
+    .list{width:100%;max-width:760px;display:flex;flex-direction:column;gap:14px;padding:20px;background:rgba(0,0,0,0.18);border-radius:14px;border:1px solid rgba(255,255,255,0.04);}
+    .item{display:flex;gap:14px;align-items:center;padding:16px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(0,255,217,0.06);box-shadow:0 6px 20px rgba(2,6,23,0.5);}
+    .icon{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:grid;place-items:center;font-weight:800;font-size:18px;color:#fff;flex-shrink:0;box-shadow:0 6px 18px rgba(3,8,25,0.6);}
+    .text h4{margin:0;font-size:18px;font-weight:800;}
+    .text p{margin:4px 0 0;color:var(--muted);font-size:13px;}
+    footer{display:flex;justify-content:center;align-items:center;padding:18px 12px;margin-top:8px;gap:8px;}
+    .credit{color:var(--cyan);font-weight:700;text-shadow:0 0 12px rgba(0,255,217,0.18);}
+    .credit a{color:var(--red);font-weight:900;text-decoration:none;margin-left:6px;}
+    @media (max-width:720px){.icon{width:48px;height:48px;font-size:16px}.title{font-size:clamp(34px,12vw,64px)}.list{padding:16px}}
   </style>
 </head>
 <body>
-  <div class="bg-image" aria-hidden="true"></div>
+  <div class="bg-image"></div>
+  <div class="galaxy" id="galaxy"></div>
 
-  <div class="galaxy" id="galaxy" aria-hidden="true"></div>
-
-  <div class="page" role="document">
+  <div class="page">
     <header>
       <h1 class="title">HuyMythicIOS</h1>
-
-      <div class="intro-row" aria-live="polite">
+      <div class="intro-row">
         <div class="intro-fixed">Tôi Là</div>
-        <div id="rotator" class="rotator" role="status" aria-atomic="true">Hoàng Quang Huy</div>
+        <div id="rotator" class="rotator">Hoàng Quang Huy</div>
       </div>
     </header>
 
-    <main class="content" role="main">
-      <section class="list" aria-label="Danh sách Coming Soon">
+    <main class="content">
+      <section class="list">
         <div class="item"><div class="icon">QH</div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
         <div class="item"><div class="icon">QH</div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
         <div class="item"><div class="icon">QH</div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
@@ -242,8 +158,8 @@
       </section>
     </main>
 
-    <footer role="contentinfo">
-      <div class="credit">Code Bởi HuyMythicIOS: <a href="https://discord.gg/XEaC68tVnv" target="_blank" rel="noopener">Discord Support</a></div>
+    <footer>
+      <div class="credit">Code Bởi HuyMythicIOS: <a href="https://discord.gg/XEaC68tVnv" target="_blank">Discord Support</a></div>
     </footer>
   </div>
 
@@ -252,67 +168,58 @@
       const phrases = ["Hoàng Quang Huy","Make Client Roblox VNG IOS","Code HTML And CSS"];
       let idx = 0;
       const el = document.getElementById('rotator');
-
       function showPhrase(i){
         el.classList.remove('visible');
         setTimeout(()=>{
           el.textContent = phrases[i];
           el.classList.add('visible');
-        }, 220);
+        },220);
       }
-
       showPhrase(0);
       setInterval(()=>{
-        idx = (idx + 1) % phrases.length;
+        idx=(idx+1)%phrases.length;
         showPhrase(idx);
-      }, 5000);
+      },5000);
 
-      const galaxy = document.getElementById('galaxy');
-
-      for (let i = 0; i < 220; i++){
-        const s = document.createElement('div');
-        s.className = 'star';
-        const size = (Math.random()*2.5) + 0.6;
-        s.style.width = size + 'px';
-        s.style.height = size + 'px';
-        s.style.left = (Math.random()*100) + '%';
-        s.style.top = (Math.random()*100) + '%';
-        s.style.opacity = (Math.random()*0.9).toString();
-        const dur = 3 + Math.random()*6;
-        s.style.animation = `twinkle ${dur}s ease-in-out ${Math.random()*-dur}s infinite`;
+      const galaxy=document.getElementById('galaxy');
+      for(let i=0;i<220;i++){
+        const s=document.createElement('div');
+        s.className='star';
+        const size=(Math.random()*2.5)+0.6;
+        s.style.width=size+'px';
+        s.style.height=size+'px';
+        s.style.left=(Math.random()*100)+'%';
+        s.style.top=(Math.random()*100)+'%';
+        s.style.opacity=(Math.random()*0.9).toString();
+        const dur=3+Math.random()*6;
+        s.style.animation=`twinkle ${dur}s ease-in-out ${Math.random()*-dur}s infinite`;
         galaxy.appendChild(s);
       }
-
-      const streakConfig = [
-        {top:'8%', left:'-40%', r:-6, dur:20, delay:0},
-        {top:'28%', left:'-55%', r:-10, dur:26, delay:3},
-        {top:'52%', left:'-45%', r:-8, dur:22, delay:1.5},
-        {top:'76%', left:'-60%', r:-12, dur:30, delay:5}
-      ];
-      streakConfig.forEach(cfg => {
-        const st = document.createElement('div');
-        st.className = 'streak';
-        st.style.top = cfg.top;
-        st.style.left = cfg.left;
-        st.style.setProperty('--r', cfg.r + 'deg');
-        st.style.animation = `streakMove ${cfg.dur}s linear ${cfg.delay}s infinite`;
-        galaxy.appendChild(st);
-      });
-
-      const firstItem = document.querySelector('.item');
-      if (firstItem) {
-        const title = firstItem.querySelector('.text h4');
-        const desc = firstItem.querySelector('.text p');
-        title.textContent = 'DeltaVN V35 HuyMythic (6/10)';
-        desc.textContent = 'Nhấn để tải';
-
-        firstItem.style.cursor = 'pointer';
-        firstItem.addEventListener('click', () => {
-          window.open('https://link4m.com/wb2dAULC', '_blank');
-        });
-      }
-
     })();
+
+    const firstItem = document.querySelectorAll('.item')[0];
+    if (firstItem) {
+      const title = firstItem.querySelector('.text h4');
+      const desc = firstItem.querySelector('.text p');
+      title.textContent = 'DeltaVN V36 HuyMythic (14/10)';
+      desc.textContent = 'Nhấn để tải';
+      firstItem.style.cursor = 'pointer';
+      firstItem.addEventListener('click', () => {
+        window.open('https://link4m.com/jBlnOh6', '_blank');
+      });
+    }
+
+    const secondItem = document.querySelectorAll('.item')[1];
+    if (secondItem) {
+      const title2 = secondItem.querySelector('.text h4');
+      const desc2 = secondItem.querySelector('.text p');
+      title2.textContent = 'DeltaVN V35 HuyMythic (6/10)';
+      desc2.textContent = 'Nhấn để tải';
+      secondItem.style.cursor = 'pointer';
+      secondItem.addEventListener('click', () => {
+        window.open('https://link4m.com/wb2dAULC', '_blank');
+      });
+    }
   </script>
 </body>
 </html>
