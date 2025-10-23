@@ -148,7 +148,7 @@
       <section class="list">
         <div class="item"><div class="icon"><img src="laicakho.jpeg" alt="icon"></div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
         <div class="item"><div class="icon"><img src="laicakho.jpeg" alt="icon"></div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
-        <div class="item"><div class="icon">QH</div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
+        <div class="item"><div class="icon"><img src="laicakho.jpeg" alt="icon"></div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
         <div class="item"><div class="icon">QH</div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
         <div class="item"><div class="icon">QH</div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
         <div class="item"><div class="icon">QH</div><div class="text"><h4>Coming Soon</h4><p>Đang cập nhật</p></div></div>
@@ -219,6 +219,18 @@
       secondItem.style.cursor = 'pointer';
       secondItem.addEventListener('click', () => {
         window.open('https://link4m.com/Dc22UH', '_blank');
+      });
+    }
+    
+    const thirdItem = document.querySelectorAll('.item')[2];
+    if (thirdItem) {
+      const title3 = thirdItem.querySelector('.text h4');
+      const desc3 = thirdItem.querySelector('.text p');
+      title3.textContent = 'Esign V3';
+      desc3.textContent = 'Nhấn để tải';
+      thirdItem.style.cursor = 'pointer';
+      thirdItem.addEventListener('click', () => {
+        window.open('itms-services://?action=download-manifest&url=https://huymythicios.github.io/EsignGua/manifest.plist', '_blank');
       });
     }
   </script>
